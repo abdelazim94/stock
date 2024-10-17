@@ -24,7 +24,7 @@ jobs:
 
       # Step 4: Install Dependencies (including dev dependencies)
       - name: Install Dependencies
-        run: composer install --quiet --no-ansi --no-interaction --no-scripts --no-progress
+        run: composer update --quiet --no-ansi --no-interaction --no-scripts --no-progress
 
       # Step 5: Generate application key
       - name: Generate key
