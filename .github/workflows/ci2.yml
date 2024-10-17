@@ -22,7 +22,7 @@ jobs:
       - name: Copy .env
         run: cp .env.ci .env
 
-      # Step 4: Install Dependencies
+      # Step 4: Install Dependencies (including dev dependencies)
       - name: Install Dependencies
         run: composer install --quiet --no-ansi --no-interaction --no-scripts --no-progress
 
