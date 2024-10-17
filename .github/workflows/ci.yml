@@ -1,0 +1,53 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_database
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1  # Use the PHP version your Laravel project requires
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
+
+      - name: Create .env file
+        run: cp .env.example .env
+
+      - name: Generate Laravel application key
+        run: php artisan key:generate
+
+      - name: Set up database
+        run: |
+          php artisan migrate --env=testing --no-interaction --force
+          php artisan db:seed --env=testing --no-interaction
+
+      - name: Run tests
+        run: vendor/bin/phpunit --testdox
