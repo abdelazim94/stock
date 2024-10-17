@@ -36,7 +36,7 @@ jobs:
 
       # Step 7: Run PHPStan analysis
       - name: PHPStan
-        run: ./vendor/bin/phpstan analyse --memory-limit=1G
+        run: ./vendor/bin/phpstan analyse app --memory-limit=1G
 
       # Step 8: Run PHP Insights
       - name: PHP Insights
