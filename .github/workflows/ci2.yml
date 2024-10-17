@@ -19,8 +19,8 @@ jobs:
       - uses: actions/checkout@v3
 
       # Step 3: Copy .env
-      - name: Copy .env
-        run: cp .env.ci .env
+      #- name: Copy .env
+       # run: cp .env.ci .env
 
       # Step 4: Install Dependencies
       - name: Install Dependencies
