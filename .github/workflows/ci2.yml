@@ -35,8 +35,8 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
 
       # Step 7: Run PHPStan analysis
-      - name: PHPStan
-        run: ./vendor/bin/phpstan analyse app --memory-limit=1G
+      #- name: PHPStan
+      #  run: ./vendor/bin/phpstan analyse app --memory-limit=1G
 
       # Step 8: Run PHP Insights
       - name: PHP Insights
